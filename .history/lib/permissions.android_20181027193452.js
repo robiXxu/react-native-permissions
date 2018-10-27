@@ -18,8 +18,6 @@ const permissionTypes = {
   callPhone: PermissionsAndroid.PERMISSIONS.CALL_PHONE,
   readSms: PermissionsAndroid.PERMISSIONS.READ_SMS,
   receiveSms: PermissionsAndroid.PERMISSIONS.RECEIVE_SMS,
-  sendSms: PermissionsAndroid.PERMISSIONS.SEND_SMS,
-  readPhoneState: PermissionsAndroid.PERMISSIONS.READ_PHONE_STATE,
 }
 
 const RESULTS = {
