@@ -18,12 +18,12 @@ _Complies with
 
 ## ⚠️ Breaking changes in version 1.0.0
 
-* Now using React Native's own JS `PermissionsAndroid` module on Android, which
+- Now using React Native's own JS `PermissionsAndroid` module on Android, which
   is great because we no longer have to do any additional linking on Android
-* Updated API to be closer to React Native's `PermissionsAndroid`
-* Removed `openSettings()` support on Android (to stay linking-free). There are
+- Updated API to be closer to React Native's `PermissionsAndroid`
+- Removed `openSettings()` support on Android (to stay linking-free). There are
   several NPM modules available for this
-* `restricted` status now supported on Android, although it means something
+- `restricted` status now supported on Android, although it means something
   different than iOS
 
 ## Setup
@@ -60,8 +60,7 @@ react-native link react-native-permissions
    folder ➜ `Add Files to <...>`
 2. Go to `node_modules` ➜ `react-native-permissions` ➜ select
    `ReactNativePermissions.xcodeproj`
-3. Add `libReactNativePermissions.a` to `Build Phases` -> `Link Binary With
-   Libraries`
+3. Add `libReactNativePermissions.a` to `Build Phases` -> `Link Binary With Libraries`
 
 ## Using
 
@@ -139,7 +138,7 @@ Promises resolve into one of these statuses:
 | Return value   | Notes                                                                                                                                                                                                                                                                  |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorized`   | User has authorized this permission                                                                                                                                                                                                                                    |
-| `denied`       | User has denied this permission at least once. On iOS this means that the user will not be prompted again. Android users can be prompted multiple times until they select 'Never ask me again'                                                                          |
+| `denied`       | User has denied this permission at least once. On iOS this means that the user will not be prompted again. Android users can be prompted multiple times until they select 'Never ask me again'                                                                         |
 | `restricted`   | **iOS** - this means user is not able to grant this permission, either because it's not supported by the device or because it has been blocked by parental controls. **Android** - this means that the user has selected 'Never ask me again' while denying permission |
 | `undetermined` | User has not yet been prompted with a permission dialog                                                                                                                                                                                                                |
 
@@ -180,15 +179,15 @@ The current supported permissions are:
 
 ### iOS Notes
 
-* Permission type `bluetooth` represents the status of the
+- Permission type `bluetooth` represents the status of the
   `CBPeripheralManager`. Don't use this if only need `CBCentralManager`
-* Permission type `location` accepts a second parameter for `request()` and
+- Permission type `location` accepts a second parameter for `request()` and
   `check()`; the second parameter is a string, either `always` or `whenInUse`
   (default).
-* Permission type `notification` accepts a second parameter for `request()`. The
+- Permission type `notification` accepts a second parameter for `request()`. The
   second parameter is an array with the desired alert types. Any combination of
   `alert`, `badge` and `sound` (default requests all three).
-* If you are not requesting mediaLibrary then you can remove MediaPlayer.framework from the xcode project
+- If you are not requesting mediaLibrary then you can remove MediaPlayer.framework from the xcode project
 
 ```js
 // example
@@ -207,13 +206,12 @@ Permissions.request('notification', { type: ['alert', 'badge'] }).then(
 )
 ```
 
-* You cannot request microphone permissions on the simulator.
-* With Xcode 8, you now need to add usage descriptions for each permission you
+- You cannot request microphone permissions on the simulator.
+- With Xcode 8, you now need to add usage descriptions for each permission you
   will request. Open Xcode ➜ `Info.plist` ➜ Add a key (starting with "Privacy -
   ...") with your kit specific permission.
 
-Example: If you need Contacts permission you have to add the key `Privacy -
-Contacts Usage Description`.
+Example: If you need Contacts permission you have to add the key `Privacy - Contacts Usage Description`.
 
 <img width="338" alt="3cde3b44-7ffd-11e6-918b-63888e33f983" src="https://cloud.githubusercontent.com/assets/1440796/18713019/271be540-8011-11e6-87fb-c3828c172dfc.png">
 
@@ -246,6 +244,7 @@ So before submitting your app to the App Store, make sure that in your
 <key>NSMotionUsageDescription</key>
 <string>Some description</string>
 ```
+
 This is required because during the phase of processing in the App Store
 submission, the system detects that you app contains code to request the
 permission `X` but don't have the `UsageDescription` key and then it rejects the
@@ -258,16 +257,16 @@ You can find more information about this issue in #46.
 
 ### Android Notes
 
-* Uses React Native's own
+- Uses React Native's own
   [`PermissionsAndroid` JS API](http://facebook.github.io/react-native/docs/permissionsandroid.html).
-* All required permissions also need to be included in the `AndroidManifest.xml`
+- All required permissions also need to be included in the `AndroidManifest.xml`
   file before they can be requested. Otherwise `request()` will immediately
   return `denied`.
-* You can request write access to any of these types by also including the
+- You can request write access to any of these types by also including the
   appropriate write permission in the `AndroidManifest.xml` file. Read more
   [here](https://developer.android.com/guide/topics/security/permissions.html#normal-dangerous).
 
-* The optional rationale argument will show a dialog prompt.
+- The optional rationale argument will show a dialog prompt.
 
 ```js
 // example
@@ -283,7 +282,7 @@ Permissions.request('camera', {
 })
 ```
 
-* Permissions are automatically accepted for **targetSdkVersion < 23** but you
+- Permissions are automatically accepted for **targetSdkVersion < 23** but you
   can still use `check()` to check if the user has disabled them from Settings.
 
 You might need to elevate the **targetSdkVersion** version in your
